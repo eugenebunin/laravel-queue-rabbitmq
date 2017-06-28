@@ -6,7 +6,7 @@ use DateTime;
 use Illuminate\Queue\Queue;
 use Illuminate\Queue\QueueInterface;
 use PhpAmqpLib\Channel\AMQPChannel;
-use PhpAmqpLib\Connection\AMQPConnection;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Wire\AMQPTable;
 use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob;
@@ -25,7 +25,7 @@ class RabbitMQQueue extends Queue implements QueueInterface
 	 * @param AMQPConnection $amqpConnection
 	 * @param array          $config
 	 */
-	public function __construct(AMQPConnection $amqpConnection, $config)
+	public function __construct(AMQPStreamConnection $amqpConnection, $config)
 	{
 		$this->connection = $amqpConnection;
 		$this->defaultQueue = $config['queue'];
